@@ -13,5 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.app_name);
+        getSupportActionBar().setElevation(0);
+
     }
 }
