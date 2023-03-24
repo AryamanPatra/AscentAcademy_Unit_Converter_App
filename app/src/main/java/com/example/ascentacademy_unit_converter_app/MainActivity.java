@@ -21,6 +21,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     Context context;
+    EntityList entityList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.no_string);
         getSupportActionBar().setElevation(0);
         context = MainActivity.this;
+        entityList = new EntityList(context);
     }
 
 /*
@@ -38,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("UseCompatLoadingForDrawables")
     public void changeEntity(View view){
         updateScrollBar(view.getId());
-
-//        change calculate icon
-        FloatingActionButton fab = findViewById(R.id.calculateConversionFAB);
-        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_android_black_24dp));
+        updateConversionFABimage(view.getId());
     }
 //    takes input for the input field
     public void inputMethod(View view){
@@ -71,14 +70,13 @@ public class MainActivity extends AppCompatActivity {
         IMPORTANT METHODS
 */
 
-    static int[] scrollBarEntityId = {R.id.textViewMass,R.id.textViewTemperature,R.id.textViewLength,R.id.textViewTime,R.id.textViewData};
 
 //    Updates scroll bar UI on clicking items
     public void updateScrollBar(int id){
-        for (int i: scrollBarEntityId){
-            TextView textView = findViewById(i);
+        for (int i=0; i<entityList.dataset.size();i++){
+            TextView textView = findViewById(entityList.dataset.get(i).id);
             Typeface typeface = Typeface.createFromAsset(getAssets(), "res/font/aleo.ttf");
-            if(id==i){
+            if(id==textView.getId()){
                 textView.setTextColor(getResources().getColor(R.color.white));
                 textView.setTypeface(typeface, Typeface.BOLD);
             }
@@ -89,4 +87,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+//        change calculate icon
+    public void updateConversionFABimage(int id){
+        FloatingActionButton fab = findViewById(R.id.calculateConversionFAB);
+        for (int i=0; i<entityList.dataset.size(); i++){
+            if (entityList.dataset.get(i).id==id){
+                fab.setImageDrawable(getDrawable(entityList.dataset.get(i).iconId));
+            }
+        }
+    }
 }

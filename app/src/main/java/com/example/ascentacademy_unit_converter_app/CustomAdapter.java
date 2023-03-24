@@ -1,15 +1,18 @@
 package com.example.ascentacademy_unit_converter_app;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
 public class CustomAdapter extends BaseAdapter {
     List<String> unitList;
+    Context context;
 
-    public CustomAdapter(List<String> unitList){
+    public CustomAdapter(Context context, List<String> unitList){
         this.unitList = unitList;
     }
 
@@ -30,6 +33,9 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        view = new TextView(context);
+        TextView tv = (TextView) view;
+        tv.setText(unitList.get(i));
+        return view;
     }
 }
