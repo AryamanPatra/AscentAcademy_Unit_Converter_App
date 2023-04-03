@@ -10,10 +10,11 @@
 
     <Button
         android:id="@+id/calculateButton"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_40sdp"
         app:layout_constraintBottom_toTopOf="@+id/tempConvertTo"
         android:text="Convert"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,7 @@
     <TextView
         android:id="@+id/tempConvertTo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_110sdp"
+        android:layout_height="@dimen/_80sdp"
         android:layout_margin="@dimen/_8sdp"
         android:padding="@dimen/_8sdp"
         android:textSize="@dimen/_51sdp"
@@ -44,7 +45,7 @@
     <TextView
         android:id="@+id/tempConvertFrom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_110sdp"
+        android:layout_height="@dimen/_80sdp"
         android:layout_margin="@dimen/_8sdp"
         android:autoSizeMaxTextSize="@dimen/_51ssp"
         android:autoSizeMinTextSize="@dimen/_14ssp"
@@ -62,45 +63,44 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.119" />
 
-    <Button
-        android:id="@+id/tempUnitCel"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:text="@string/cel"
-        android:textSize="@dimen/_20ssp"
-        app:cornerRadius="@dimen/_100sdp"
-        app:layout_constraintBottom_toTopOf="@+id/tempUnitFarh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempConvertFrom"
-        app:layout_constraintVertical_bias="0.608" />
-
-    <Button
-        android:id="@+id/tempUnitFarh"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:text="@string/fahr"
-        android:textSize="@dimen/_20ssp"
-        app:cornerRadius="100pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/tempUnitKel"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:text="@string/kel"
-        android:textSize="@dimen/_20ssp"
-        app:cornerRadius="100pt"
+    <LinearLayout
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toTopOf="@+id/tempConvertTo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempUnitFarh"
-        app:layout_constraintVertical_bias="0.373" />
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/calculateButton"
+        app:layout_constraintTop_toBottomOf="@+id/tempConvertFrom"
+        app:layout_constraintVertical_bias="0.497">
+
+        <Button
+            android:id="@+id/tempUnitCel"
+            android:layout_width="@dimen/_41sdp"
+            android:layout_height="@dimen/_41sdp"
+            android:text="@string/cel"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginVertical="@dimen/_14sdp"
+            app:cornerRadius="@dimen/_100sdp" />
+
+        <Button
+            android:id="@+id/tempUnitFarh"
+            android:layout_width="@dimen/_41sdp"
+            android:layout_height="@dimen/_41sdp"
+            android:text="@string/fahr"
+            android:layout_marginVertical="@dimen/_14sdp"
+            android:textSize="@dimen/_13ssp"
+            app:cornerRadius="100pt" />
+
+        <Button
+            android:id="@+id/tempUnitKel"
+            android:layout_width="@dimen/_41sdp"
+            android:layout_height="@dimen/_41sdp"
+            android:text="@string/kel"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginVertical="@dimen/_14sdp"
+            app:cornerRadius="100pt" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

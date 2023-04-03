@@ -82,8 +82,8 @@ public class TempFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         inputField = requireView().findViewById(R.id.tempConvertFrom);
         outputField = requireView().findViewById(R.id.tempConvertTo);
-        selectionContainer.put(inputField,selectedTemp);
-        selectionContainer.put(outputField,selectedTemp);
+        selectionContainer.put(inputField,getString(R.string.cel));
+        selectionContainer.put(outputField,getString(R.string.fahr));
 
         View.OnClickListener fieldListener = new View.OnClickListener() {
             @Override
@@ -110,6 +110,7 @@ public class TempFragment extends Fragment {
         for(int i=0; i<3; i++){
             buttonTempArr[i].setOnClickListener(tempListener);
         }
+        selectTemp(getString(R.string.fahr));
     }
 
 //    Methods and codes
@@ -134,7 +135,6 @@ public class TempFragment extends Fragment {
                 break;
         }
         selectTemp(selectionContainer.get(chosenField));
-        Toast.makeText(context, selectionContainer.get(chosenField), Toast.LENGTH_SHORT).show();
     }
 
     public void onClickTemp(View view){
