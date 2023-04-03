@@ -46,24 +46,24 @@ public class ConversionScale {
 
     public static class TemperatureScale{
 //        For celsius input
-        public double cToF(double c){
+        public static double cToF(double c){
             return c*(9.0/5.0)+32.0;
         }
-        public double cToK(double c){
+        public static double cToK(double c){
             return c+273.15;
         }
 //         For fahrenheit input
-        public double fToC(double f){
+        public static double fToC(double f){
             return (f-32.0)*(5.0/9.0);
         }
-        public double fToK(double f){
+        public static double fToK(double f){
             return (f-32.0)/1.8 + 273.15;
         }
 //          For Kelvin input
-        public double kToC(double k){
+        public static double kToC(double k){
             return k-273.15;
         }
-        public double kToF(double k){
+        public static double kToF(double k){
             return 1.8*(k-273.15)+32.0;
         }
     }

@@ -1,10 +1,12 @@
 package com.example.ascentacademy_unit_converter_app.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ascentacademy_unit_converter_app.MainActivity;
 import com.example.ascentacademy_unit_converter_app.conversion_classes.ConversionScale;
 import com.example.ascentacademy_unit_converter_app.R;
 
@@ -84,6 +87,7 @@ public class TempFragment extends Fragment {
         outputField = requireView().findViewById(R.id.tempConvertTo);
         selectionContainer.put(inputField,getString(R.string.cel));
         selectionContainer.put(outputField,getString(R.string.fahr));
+        chosenField = outputField;
 
         View.OnClickListener fieldListener = new View.OnClickListener() {
             @Override
@@ -111,6 +115,51 @@ public class TempFragment extends Fragment {
             buttonTempArr[i].setOnClickListener(tempListener);
         }
         selectTemp(getString(R.string.fahr));
+
+        inputField.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog alertDialog = MainActivity.createBuilder(inputField);
+                alertDialog.show();
+                return true;
+            }
+        });
+
+        Button calculationButton = requireView().findViewById(R.id.calculateButton);
+        calculationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String u1 = selectionContainer.get(inputField);
+                String u2 = selectionContainer.get(outputField);
+                double input = Double.parseDouble(inputField.getText().toString());
+                double output = 0.0;
+                assert u1 != null;
+                assert u2 != null;
+                if (u1.equals(u2))
+                    output = input;
+                else{
+                    if (u1.equals(getString(R.string.cel))){
+                        if (u2.equals(getString(R.string.fahr)))
+                            output = ConversionScale.TemperatureScale.cToF(input);
+                        else
+                            output = ConversionScale.TemperatureScale.cToK(input);
+                    }
+                    else if (u1.equals(getString(R.string.fahr))){
+                        if (u2.equals(getString(R.string.cel)))
+                            output = ConversionScale.TemperatureScale.fToC(input);
+                        else
+                            output = ConversionScale.TemperatureScale.fToK(input);
+                    }
+                    else{
+                        if(u2.equals(getString(R.string.cel)))
+                            output = ConversionScale.TemperatureScale.kToC(input);
+                        else
+                            output = ConversionScale.TemperatureScale.kToF((input));
+                    }
+                }
+                outputField.setText(String.valueOf(output));
+            }
+        });
     }
 
 //    Methods and codes
