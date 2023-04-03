@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">Conversion</string>
-    <string name="mass">Mass</string>
-    <string name="temp">Temperature</string>
-    <string name="length">Length</string>
-    <string name="time">Time</string>
-    <string name="data">Data</string>
-    <string name="no_string" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cel">°C</string>
+    <string name="fahr">°F</string>
+    <string name="kel">K</string>
 </resources>

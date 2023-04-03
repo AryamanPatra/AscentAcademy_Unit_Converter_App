@@ -2,98 +2,89 @@ package com.example.ascentacademy_unit_converter_app;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.ascentacademy_unit_converter_app.conversion_classes.*;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.ascentacademy_unit_converter_app.databinding.ActivityMainBinding;
+import com.example.ascentacademy_unit_converter_app.fragments.DataFragment;
+import com.example.ascentacademy_unit_converter_app.fragments.LengthFragment;
+import com.example.ascentacademy_unit_converter_app.fragments.MassFragment;
+import com.example.ascentacademy_unit_converter_app.fragments.TempFragment;
+import com.example.ascentacademy_unit_converter_app.fragments.TimeFragment;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    Context context;
-    EntityList entityList;
+    ActivityMainBinding binding;
+    static Context context;
+    Fragment frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.no_string);
-        getSupportActionBar().setElevation(0);
-        context = MainActivity.this;
-        entityList = new EntityList(context);
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        context = this;
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.app_name);
+        replaceFragment(new MassFragment());
+
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.mass_menu:
+                    replaceFragment(new MassFragment());
+                    break;
+                case R.id.temp_menu:
+                    replaceFragment(new TempFragment(context));
+                    break;
+                case R.id.length_menu:
+                    replaceFragment(new LengthFragment());
+                    break;
+                case R.id.time_menu:
+                    replaceFragment(new TimeFragment());
+                    break;
+                case R.id.data_menu:
+                    replaceFragment(new DataFragment());
+                    break;
+            }
+            return true;
+        });
     }
 
-/*
-        ON CLICK METHODS
-*/
-//    changes the entire conversion system
-    @SuppressLint("UseCompatLoadingForDrawables")
-    public void changeEntity(View view){
-        updateScrollBar(view.getId());
-        updateConversionFABimage(view.getId());
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,fragment);
+        fragmentTransaction.commit();
     }
-//    takes input for the input field
-    public void inputMethod(View view){
+
+    public static AlertDialog createBuilder(TextView inputTextView){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        EditText inputEd = new EditText(context);
-        inputEd.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        final String[] inputText= new String[1];
-        builder.setView(inputEd);
-        inputEd.addTextChangedListener(new TextWatcher() {
+        EditText editText = new EditText(context);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        builder.setView(editText);
+        builder.setTitle("Input");
+        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void afterTextChanged(Editable editable) {
-                inputText[0] = editable.toString();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                inputTextView.setText(editText.getText());
             }
         });
-        builder.setPositiveButton("Insert", (dialogInterface, i) -> {
-            TextView tv = findViewById(R.id.input);
-            tv.setText(inputText[0]);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
         });
-        builder.create().show();
-    }
-
-/*
-        IMPORTANT METHODS
-*/
-
-
-//    Updates scroll bar UI on clicking items
-    public void updateScrollBar(int id){
-        for (int i=0; i<entityList.dataset.size();i++){
-            TextView textView = findViewById(entityList.dataset.get(i).id);
-            Typeface typeface = Typeface.createFromAsset(getAssets(), "res/font/aleo.ttf");
-            if(id==textView.getId()){
-                textView.setTextColor(getResources().getColor(R.color.white));
-                textView.setTypeface(typeface, Typeface.BOLD);
-            }
-            else{
-                textView.setTextColor(getResources().getColor(R.color.purple_100));
-                textView.setTypeface(typeface, Typeface.NORMAL);
-            }
-        }
-    }
-
-//        change calculate icon
-    public void updateConversionFABimage(int id){
-        FloatingActionButton fab = findViewById(R.id.calculateConversionFAB);
-        for (int i=0; i<entityList.dataset.size(); i++){
-            if (entityList.dataset.get(i).id==id){
-                fab.setImageDrawable(getDrawable(entityList.dataset.get(i).iconId));
-            }
-        }
+        return builder.create();
     }
 }

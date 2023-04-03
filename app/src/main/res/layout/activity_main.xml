@@ -6,178 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fadeScrollbars="true"
-        android:scrollbars="none"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    </FrameLayout>
 
-            <TextView
-                android:id="@+id/textViewMass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/purple_500"
-                android:onClick="changeEntity"
-                android:fontFamily="@font/aleo"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="10dp"
-                android:text="@string/mass"
-                android:textColor="@color/purple_100"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/purple_500"
-                android:onClick="changeEntity"
-                android:fontFamily="@font/aleo"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="10dp"
-                android:text="@string/temp"
-                android:textColor="@color/purple_100"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewLength"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/purple_500"
-                android:onClick="changeEntity"
-                android:fontFamily="@font/aleo"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="10dp"
-                android:text="@string/length"
-                android:textColor="@color/purple_100"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/purple_500"
-                android:onClick="changeEntity"
-                android:fontFamily="@font/aleo"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="10dp"
-                android:text="@string/time"
-                android:textColor="@color/purple_100"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/purple_500"
-                android:onClick="changeEntity"
-                android:fontFamily="@font/aleo"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="10dp"
-                android:text="@string/data"
-                android:textColor="@color/purple_100"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <TextView
-        android:id="@+id/input"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="tap to insert"
-        android:onClick="inputMethod"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <TextView
-        android:id="@+id/output"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.750" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/cancelAllFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@android:drawable/ic_delete" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/calculateConversionFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/swapUnitsFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/output"
-        app:layout_constraintEnd_toStartOf="@id/calculateConversionFAB"
-        app:layout_constraintStart_toEndOf="@+id/cancelAllFAB"
-        app:layout_constraintTop_toBottomOf="@+id/input"
-        app:srcCompat="@android:drawable/btn_dropdown" />
-
-    <TextView
-        android:id="@+id/convertFromUnitTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/input"
-        app:layout_constraintStart_toEndOf="@+id/input" />
-
-    <TextView
-        android:id="@+id/convertToUnitTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/output"
-        app:layout_constraintStart_toEndOf="@+id/output" />
-
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
