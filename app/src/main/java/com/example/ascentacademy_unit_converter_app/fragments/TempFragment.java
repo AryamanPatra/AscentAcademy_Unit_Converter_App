@@ -1,14 +1,24 @@
 package com.example.ascentacademy_unit_converter_app.fragments;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ascentacademy_unit_converter_app.conversion_classes.ConversionScale;
 import com.example.ascentacademy_unit_converter_app.R;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,9 +35,13 @@ public class TempFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Context context;
 
     public TempFragment() {
         // Required empty public constructor
+    }
+    public TempFragment(Context context) {
+        this.context = context;
     }
 
     /**
@@ -63,4 +77,79 @@ public class TempFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_temp, container, false);
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        inputField = requireView().findViewById(R.id.tempConvertFrom);
+        outputField = requireView().findViewById(R.id.tempConvertTo);
+        selectionContainer.put(inputField,selectedTemp);
+        selectionContainer.put(outputField,selectedTemp);
+
+        View.OnClickListener fieldListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickField(view);
+            }
+        };
+        if(inputField!=null && outputField!=null){
+            inputField.setOnClickListener(fieldListener);
+            outputField.setOnClickListener(fieldListener);
+        }
+        else
+            Toast.makeText(context, "Bummer", Toast.LENGTH_SHORT).show();
+
+        buttonTempArr[0] = requireView().findViewById(R.id.tempUnitCel);
+        buttonTempArr[1] = requireView().findViewById(R.id.tempUnitFarh);
+        buttonTempArr[2] = requireView().findViewById(R.id.tempUnitKel);
+        View.OnClickListener tempListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickTemp(view);
+            }
+        };
+        for(int i=0; i<3; i++){
+            buttonTempArr[i].setOnClickListener(tempListener);
+        }
+    }
+
+//    Methods and codes
+    TextView inputField;
+    TextView outputField;
+    TextView chosenField;
+    HashMap<TextView,String> selectionContainer = new HashMap<TextView,String>();
+    Button[] buttonTempArr = new Button[3];
+    String selectedTemp = "";
+
+    public void onClickField(View view){
+        switch (view.getId()){
+            case R.id.tempConvertTo:
+                chosenField = outputField;
+                outputField.setBackground(getContext().getDrawable(R.drawable.textview_border_selected));
+                inputField.setBackground(getContext().getDrawable(R.drawable.textview_border_unselected));
+                break;
+            case R.id.tempConvertFrom:
+                chosenField = inputField;
+                inputField.setBackground(getContext().getDrawable(R.drawable.textview_border_selected));
+                outputField.setBackground(getContext().getDrawable(R.drawable.textview_border_unselected));
+                break;
+        }
+        selectTemp(selectionContainer.get(chosenField));
+        Toast.makeText(context, selectionContainer.get(chosenField), Toast.LENGTH_SHORT).show();
+    }
+
+    public void onClickTemp(View view){
+        selectedTemp = ((Button)view).getText().toString();
+        selectionContainer.put(chosenField,selectedTemp);
+        selectTemp(selectedTemp);
+    }
+
+    void selectTemp(String s){
+        for(Button b:buttonTempArr){
+            if(b.getText().equals(s))
+                b.setBackgroundColor(getContext().getColor(R.color.purple_500));
+            else
+                b.setBackgroundColor(getContext().getColor(R.color.grey));
+        }
+    }
+
 }

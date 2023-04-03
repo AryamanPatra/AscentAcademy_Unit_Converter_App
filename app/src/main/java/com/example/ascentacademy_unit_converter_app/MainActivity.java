@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.ascentacademy_unit_converter_app.databinding.ActivityMainBinding;
@@ -19,38 +21,41 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    Context context;
+    Fragment frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        context = this;
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.app_name);
-        replaceFragement(new MassFragment());
+        replaceFragment(new MassFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.mass_menu:
-                    replaceFragement(new MassFragment());
+                    replaceFragment(new MassFragment());
                     break;
                 case R.id.temp_menu:
-                    replaceFragement(new TempFragment());
+                    replaceFragment(new TempFragment(context));
                     break;
                 case R.id.length_menu:
-                    replaceFragement(new LengthFragment());
+                    replaceFragment(new LengthFragment());
                     break;
                 case R.id.time_menu:
-                    replaceFragement(new TimeFragment());
+                    replaceFragment(new TimeFragment());
                     break;
                 case R.id.data_menu:
-                    replaceFragement(new DataFragment());
+                    replaceFragment(new DataFragment());
                     break;
             }
             return true;
         });
     }
 
-    private void replaceFragement(Fragment fragment){
+    private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragment);

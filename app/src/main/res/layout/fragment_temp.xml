@@ -7,15 +7,100 @@
     tools:context=".fragments.TempFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintBottom_toTopOf="@+id/tempConvertTo"
+        android:text="Convert"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempConvertFrom"
+        app:layout_constraintVertical_bias="0.5" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tempConvertTo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_110sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:padding="@dimen/_8sdp"
+        android:textSize="@dimen/_51sdp"
+        android:autoSizeMaxTextSize="@dimen/_51ssp"
+        android:autoSizeMinTextSize="@dimen/_14ssp"
+        android:autoSizeStepGranularity="@dimen/_1ssp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:background="@drawable/textview_border_selected"
+        android:autoSizeTextType="uniform"
         android:text="Temperature Fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
+
+    <TextView
+        android:id="@+id/tempConvertFrom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_110sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:autoSizeMaxTextSize="@dimen/_51ssp"
+        android:autoSizeMinTextSize="@dimen/_14ssp"
+        android:autoSizeStepGranularity="@dimen/_1ssp"
+        android:gravity="center_vertical"
+        android:autoSizeTextType="uniform"
+        android:padding="@dimen/_8sdp"
+        android:text="Temperature Fragment"
+        android:textSize="@dimen/_51sdp"
+        android:background="@drawable/textview_border_unselected"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.119" />
+
+    <Button
+        android:id="@+id/tempUnitCel"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:text="@string/cel"
+        android:textSize="@dimen/_20ssp"
+        app:cornerRadius="@dimen/_100sdp"
+        app:layout_constraintBottom_toTopOf="@+id/tempUnitFarh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempConvertFrom"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <Button
+        android:id="@+id/tempUnitFarh"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:text="@string/fahr"
+        android:textSize="@dimen/_20ssp"
+        app:cornerRadius="100pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/tempUnitKel"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:text="@string/kel"
+        android:textSize="@dimen/_20ssp"
+        app:cornerRadius="100pt"
+        app:layout_constraintBottom_toTopOf="@+id/tempConvertTo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempUnitFarh"
+        app:layout_constraintVertical_bias="0.373" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
