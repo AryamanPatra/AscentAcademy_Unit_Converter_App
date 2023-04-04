@@ -4,7 +4,7 @@
     <item android:title="Mass"
         android:id="@+id/mass_menu"
         android:icon="@drawable/weight_24"/>
-    <item android:title="Temperature"
+    <item android:title="Thermal"
         android:id="@+id/temp_menu"
         android:icon="@drawable/temp_24"/>
     <item android:title="Length"
