@@ -9,7 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/calculateButton"
+        android:id="@+id/tempCalculateButton"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_40sdp"
         app:layout_constraintBottom_toTopOf="@+id/tempConvertTo"
@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tempConvertTo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toEndOf="@+id/calculateButton"
+        app:layout_constraintStart_toEndOf="@+id/tempCalculateButton"
         app:layout_constraintTop_toBottomOf="@+id/tempConvertFrom"
         app:layout_constraintVertical_bias="0.497">
 

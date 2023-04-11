@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -82,7 +83,7 @@ public class TempFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         inputField = requireView().findViewById(R.id.tempConvertFrom);
         outputField = requireView().findViewById(R.id.tempConvertTo);
         selectionContainer.put(inputField,getString(R.string.cel));
@@ -119,13 +120,13 @@ public class TempFragment extends Fragment {
         inputField.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                AlertDialog alertDialog = MainActivity.createBuilder(inputField);
-                alertDialog.show();
+                AlertDialog.Builder alertDialogBuilder = MainActivity.createBuilder(inputField);
+                alertDialogBuilder.create().show();
                 return true;
             }
         });
 
-        Button calculationButton = requireView().findViewById(R.id.calculateButton);
+        Button calculationButton = requireView().findViewById(R.id.tempCalculateButton);
         calculationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,6 +161,8 @@ public class TempFragment extends Fragment {
                 outputField.setText(String.valueOf(output));
             }
         });
+
+        changeConvertText();
     }
 
 //    Methods and codes
@@ -190,6 +193,7 @@ public class TempFragment extends Fragment {
         selectedTemp = ((Button)view).getText().toString();
         selectionContainer.put(chosenField,selectedTemp);
         selectTemp(selectedTemp);
+        changeConvertText();
     }
 
     void selectTemp(String s){
@@ -199,6 +203,14 @@ public class TempFragment extends Fragment {
             else
                 b.setBackgroundColor(getContext().getColor(R.color.grey));
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    void changeConvertText(){
+        String from = selectionContainer.get(inputField);
+        String to = selectionContainer.get(outputField);
+        Button convert = requireView().findViewById(R.id.tempCalculateButton);
+        convert.setText(from + "  to  " + to);
     }
 
 }

@@ -2,10 +2,12 @@ package com.example.ascentacademy_unit_converter_app;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.mass_menu:
-                    replaceFragment(new MassFragment());
+                    replaceFragment(new MassFragment(context));
                     break;
                 case R.id.temp_menu:
                     replaceFragment(new TempFragment(context));
@@ -107,10 +110,11 @@ public class MainActivity extends AppCompatActivity {
             menu.getItem(4).setIcon(R.drawable.sd_24);
     }
 
-    public static AlertDialog createBuilder(TextView inputTextView){
+    public static AlertDialog.Builder createBuilder(TextView inputTextView){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         EditText editText = new EditText(context);
         editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        editText.setText(inputTextView.getText());
         builder.setView(editText);
         builder.setTitle("Input");
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
@@ -125,6 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        return builder.create();
+        return builder;
     }
 }

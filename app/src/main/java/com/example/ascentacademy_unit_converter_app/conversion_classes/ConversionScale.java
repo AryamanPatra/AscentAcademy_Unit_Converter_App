@@ -17,7 +17,7 @@ public class ConversionScale {
         LBS(453.59237),
         OZ(28.3495231);
 
-        final double scaleValue;
+        public final double scaleValue;
         MassScale(double scaleValue){
             this.scaleValue=scaleValue;
         }
