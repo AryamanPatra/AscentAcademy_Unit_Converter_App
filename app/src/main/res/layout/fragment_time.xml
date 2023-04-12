@@ -6,16 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".fragments.TimeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:orientation="horizontal"
+        android:gravity="start|center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/timeConvertFrom"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:autoSizeMaxTextSize="@dimen/_43ssp"
+            android:autoSizeMinTextSize="@dimen/_14ssp"
+            android:autoSizeStepGranularity="@dimen/_1ssp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/textview_border_unselected"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_8sdp"
+            android:text="0"
+            android:textSize="@dimen/_51sdp" />
+        <TextView
+            android:id="@+id/timeUnitFrom"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:autoSizeMaxTextSize="@dimen/_43ssp"
+            android:autoSizeMinTextSize="@dimen/_14ssp"
+            android:autoSizeStepGranularity="@dimen/_1ssp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/textview_border_unselected"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="MIN"
+            android:textSize="@dimen/_51sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/timeConvertTo"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:autoSizeMaxTextSize="@dimen/_43ssp"
+            android:autoSizeMinTextSize="@dimen/_14ssp"
+            android:autoSizeStepGranularity="@dimen/_1ssp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/textview_border_selected"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_8sdp"
+            android:text="0"
+            android:textSize="@dimen/_51sdp" />
+
+        <TextView
+            android:id="@+id/timeUnitTo"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:autoSizeMaxTextSize="@dimen/_43ssp"
+            android:autoSizeMinTextSize="@dimen/_14ssp"
+            android:autoSizeStepGranularity="@dimen/_1ssp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/textview_border_selected"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="HR"
+            android:textSize="@dimen/_51sdp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/timeCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time Fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Convert"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,7 +38,7 @@ public class ConversionScale {
         FT(3.2808399),
         YD(1.0936133),
         IN(39.3700787);
-        final double scaleValue;
+        public final double scaleValue;
         LengthScale(double scaleValue){
             this.scaleValue=scaleValue;
         }
@@ -74,10 +74,11 @@ public class ConversionScale {
         WK(7.0),
         DAY(1.0),
         HR(0.04166667),
+        MIN(0.0006944444),
         S(0.00001157),
         MS(0.000000011574);
 
-        final double scaleValue;
+        public final double scaleValue;
         TimeScale(double scaleValue){
             this.scaleValue=scaleValue;
         }
@@ -90,7 +91,7 @@ public class ConversionScale {
         KB(0.0009765625),
         B(0.000000953674316);
 
-        final double scaleValue;
+        public final double scaleValue;
         DataScale(double scaleValue){
             this.scaleValue=scaleValue;
         }
