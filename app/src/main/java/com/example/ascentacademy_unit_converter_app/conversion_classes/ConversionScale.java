@@ -34,10 +34,10 @@ public class ConversionScale {
         MM(0.001),
         UM(0.000001),
 //       Imperial Unit
-        MI(0.00062137),
-        FT(3.2808399),
-        YD(1.0936133),
-        IN(39.3700787);
+        MI(1609.344),
+        FT(0.3048),
+        YD(0.9144),
+        IN(0.0254);
         public final double scaleValue;
         LengthScale(double scaleValue){
             this.scaleValue=scaleValue;
