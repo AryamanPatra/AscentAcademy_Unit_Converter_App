@@ -10,13 +10,16 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
-        android:orientation="horizontal"
         android:gravity="start|center"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/timeConvertFrom"
-            android:layout_width="@dimen/_200sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
             android:layout_margin="@dimen/_8sdp"
             android:autoSizeMaxTextSize="@dimen/_43ssp"
@@ -28,10 +31,12 @@
             android:gravity="center_vertical"
             android:padding="@dimen/_8sdp"
             android:text="0"
+            android:layout_weight="30"
             android:textSize="@dimen/_51sdp" />
+
         <TextView
             android:id="@+id/timeUnitFrom"
-            android:layout_width="@dimen/_80sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
             android:layout_margin="@dimen/_8sdp"
             android:autoSizeMaxTextSize="@dimen/_43ssp"
@@ -43,6 +48,7 @@
             android:gravity="center"
             android:padding="@dimen/_8sdp"
             android:text="MIN"
+            android:layout_weight="70"
             android:textSize="@dimen/_51sdp" />
     </LinearLayout>
 
@@ -51,11 +57,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:weightSum="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/timeConvertTo"
-            android:layout_width="@dimen/_200sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
             android:layout_margin="@dimen/_8sdp"
             android:autoSizeMaxTextSize="@dimen/_43ssp"
@@ -67,11 +76,12 @@
             android:gravity="center_vertical"
             android:padding="@dimen/_8sdp"
             android:text="0"
+            android:layout_weight="30"
             android:textSize="@dimen/_51sdp" />
 
         <TextView
             android:id="@+id/timeUnitTo"
-            android:layout_width="@dimen/_80sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
             android:layout_margin="@dimen/_8sdp"
             android:autoSizeMaxTextSize="@dimen/_43ssp"
@@ -83,6 +93,7 @@
             android:gravity="center"
             android:padding="@dimen/_8sdp"
             android:text="HR"
+            android:layout_weight="70"
             android:textSize="@dimen/_51sdp" />
     </LinearLayout>
 
